@@ -10,23 +10,23 @@ app = Flask(__name__)
 
 def predict(values, dic):
     if len(values) == 8:
-        model = pickle.load(open('models/diabetes.pkl','rb'))
+        model = pickle.load(open('PICKEL_FILES/diabetes.pkl','rb'))
         values = np.asarray(values)
         return model.predict(values.reshape(1, -1))[0]
     elif len(values) == 26:
-        model = pickle.load(open('models/breast_cancer.pkl','rb'))
+        model = pickle.load(open('PICKEL_FILES/breast_cancer.pkl','rb'))
         values = np.asarray(values)
         return model.predict(values.reshape(1, -1))[0]
     elif len(values) == 13:
-        model = pickle.load(open('models/heart.pkl','rb'))
+        model = pickle.load(open('PICKEL_FILES/heart.pkl','rb'))
         values = np.asarray(values)
         return model.predict(values.reshape(1, -1))[0]
     elif len(values) == 18:
-        model = pickle.load(open('models/kidney.pkl','rb'))
+        model = pickle.load(open('PICKEL_FILES/kidney.pkl','rb'))
         values = np.asarray(values)
         return model.predict(values.reshape(1, -1))[0]
     elif len(values) == 10:
-        model = pickle.load(open('models/liver.pkl','rb'))
+        model = pickle.load(open('PICKEL_FILES/liver.pkl','rb'))
         values = np.asarray(values)
         return model.predict(values.reshape(1, -1))[0]
 
@@ -85,7 +85,7 @@ def malariapredictPage():
                 img = np.asarray(img)
                 img = img.reshape((1,36,36,3))
                 img = img.astype(np.float64)
-                model = load_model("models/malaria.h5")
+                model = load_model("PICKEL_FILES/malaria.h5")
                 pred = np.argmax(model.predict(img)[0])
         except:
             message = "Please upload an Image"
@@ -102,7 +102,7 @@ def pneumoniapredictPage():
                 img = np.asarray(img)
                 img = img.reshape((1,36,36,1))
                 img = img / 255.0
-                model = load_model("models/pneumonia.h5")
+                model = load_model("PICKEL_FILES/pneumonia.h5")
                 pred = np.argmax(model.predict(img)[0])
         except:
             message = "Please upload an Image"
@@ -110,4 +110,4 @@ def pneumoniapredictPage():
     return render_template('pneumonia_predict.html', pred = pred)
 
 if __name__ == '__main__':
-	app.run(debug = True)
+	app.run(host='127.0.0.1', port=8080)
