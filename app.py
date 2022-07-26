@@ -9,11 +9,11 @@ from tensorflow.keras.models import load_model
 app = Flask(__name__)
 
 def predict(values, dic):
-    if len(values) == 8:
+    '''if len(values) == 8:
         model = pickle.load(open('PICKEL_FILES/diabetes.pkl','rb'))
         values = np.asarray(values)
-        return model.predict(values.reshape(1, -1))[0]
-    elif len(values) == 26:
+        return model.predict(values.reshape(1, -1))[0]'''
+    if len(values) == 26:
         model = pickle.load(open('PICKEL_FILES/breast_cancer.pkl','rb'))
         values = np.asarray(values)
         return model.predict(values.reshape(1, -1))[0]
